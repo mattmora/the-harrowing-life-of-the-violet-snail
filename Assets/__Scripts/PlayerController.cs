@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 
         transform.Rotate(new Vector3(0f, -hInput * yScalar * raftLookSpeed * Time.deltaTime, 0f));
         verticalLookObject.transform.Rotate(new Vector3(-vInput * xScalar * raftLookSpeed * Time.deltaTime, 0f, 0f));
+
+        float t = ((-currentXRotation / raftLookRange) + 1f) * 0.5f;
+        verticalLookObject.transform.localPosition = new Vector3(0f, Mathf.Lerp(-0.1f, 0.1f, t), 0f);
     }
 
 

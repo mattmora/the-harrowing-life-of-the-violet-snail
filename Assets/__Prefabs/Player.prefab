@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mode: 0
   raftLookSpeed: 30
-  raftLookRange: 45
+  raftLookRange: 60
   verticalLookObject: {fileID: 3242235187456633804}
 --- !u!114 &3242235187292463843
 MonoBehaviour:

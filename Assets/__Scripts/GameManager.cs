@@ -15,16 +15,19 @@ public class GameManager : MonoBehaviour
     public Pixelation pixelationEffect;
     public Light sun;
 
+    private float baseSunIntensity;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        baseSunIntensity = sun.intensity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        sun.intensity = Mathf.Sin(Time.time * 0.1f) * 0.03f + Mathf.Sin(Time.time * 1.13f) * 0.01f + 0.27f;
+        sun.intensity = Mathf.Sin(Time.time * 0.1f) * 0.03f + Mathf.Sin(Time.time * 1.13f) * 0.01f + baseSunIntensity;
+
         clingPrompt.SetActive(!Input.GetKey(KeyCode.Space));
     }
 
