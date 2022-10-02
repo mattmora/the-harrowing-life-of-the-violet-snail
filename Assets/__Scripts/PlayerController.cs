@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
 
     public void RaftMode()
     {
-        transform.DORotate(Vector3.zero, 10f).OnComplete(() =>
+        transform.DORotate(Vector3.zero, 15f).OnComplete(() =>
         {
             mode = ControlMode.Raft;
         });
-        verticalLookObject.transform.DOLocalRotateQuaternion(verticalLookInitialRotation, 8f);
+        verticalLookObject.transform.DOLocalRotateQuaternion(verticalLookInitialRotation, 12f);
     }
 
     public void FreeMode()
@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
     void FreeUpdate()
     {
         transform.Rotate(new Vector3(0f, -hInput * freeLookSpeed * Time.deltaTime, 0f));
-        verticalLookObject.transform.Rotate(new Vector3(-vInput * freeLookSpeed * 0.2f * Time.deltaTime, 0f, 0f));
+        verticalLookObject.transform.Rotate(new Vector3(-vInput * freeLookSpeed * Time.deltaTime, 0f, 0f));
 
-        float move = Input.GetKey(KeyCode.Space) ? 5f : 0f;
+        float move = Input.GetKey(KeyCode.Space) ? 15f : 0f;
         Vector3 newPosition = transform.position + verticalLookObject.transform.forward * move * Time.deltaTime;
         newPosition.x = Mathf.Clamp(newPosition.x, -1500f, 1500f);
         newPosition.y = Mathf.Clamp(newPosition.y, -80, -0.5f);
