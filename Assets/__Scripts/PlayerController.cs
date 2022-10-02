@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,14 +16,23 @@ public class PlayerController : MonoBehaviour
     public float raftLookSpeed = 10f;
     public float raftLookRange = 30f;
 
+    public float freeLookSpeed = 30f;
+
     public GameObject verticalLookObject;
+    private Vector3 verticalLookInitialPosition;
+    private Quaternion verticalLookInitialRotation;
+    private float freeBaseHeight;
+
+    private LuxWater_SetToGerstnerHeight waterHeight;
 
     private float hInput, vInput;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        waterHeight = GetComponent<LuxWater_SetToGerstnerHeight>();
+        verticalLookInitialPosition = verticalLookObject.transform.localPosition;
+        verticalLookInitialRotation = verticalLookObject.transform.localRotation;
     }
 
     // Update is called once per frame
@@ -32,6 +42,34 @@ public class PlayerController : MonoBehaviour
         vInput = Input.GetAxis("Vertical");
 
         if (mode == ControlMode.Raft) RaftUpdate();
+        else FreeUpdate();
+    }
+
+    public void RaftMode()
+    {
+        transform.DORotate(Vector3.zero, 10f).OnComplete(() =>
+        {
+            mode = ControlMode.Raft;
+        });
+        verticalLookObject.transform.DOLocalRotateQuaternion(verticalLookInitialRotation, 8f);
+    }
+
+    public void FreeMode()
+    {
+        freeBaseHeight = transform.position.y;
+        mode = ControlMode.Free;
+        transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        verticalLookObject.transform.localRotation = verticalLookInitialRotation;
+    }
+
+    public void Sink(float d)
+    {
+        transform.position += Vector3.down * d;
+    }
+
+    public void SetHeightAlpha(float a)
+    {
+        waterHeight.alpha = a;
     }
 
     void RaftUpdate()
@@ -54,8 +92,19 @@ public class PlayerController : MonoBehaviour
         verticalLookObject.transform.Rotate(new Vector3(-vInput * xScalar * raftLookSpeed * Time.deltaTime, 0f, 0f));
 
         float t = ((-currentXRotation / raftLookRange) + 1f) * 0.5f;
-        verticalLookObject.transform.localPosition = new Vector3(0f, Mathf.Lerp(-0.1f, 0.1f, t), 0f);
+        verticalLookObject.transform.localPosition = verticalLookInitialPosition + new Vector3(0f, Mathf.Lerp(-0.1f, 0.1f, t), 0f);
     }
 
+    void FreeUpdate()
+    {
+        transform.Rotate(new Vector3(0f, -hInput * freeLookSpeed * Time.deltaTime, 0f));
+        verticalLookObject.transform.Rotate(new Vector3(-vInput * freeLookSpeed * 0.2f * Time.deltaTime, 0f, 0f));
 
+        float move = Input.GetKey(KeyCode.Space) ? 5f : 0f;
+        Vector3 newPosition = transform.position + verticalLookObject.transform.forward * move * Time.deltaTime;
+        newPosition.x = Mathf.Clamp(newPosition.x, -1500f, 1500f);
+        newPosition.y = Mathf.Clamp(newPosition.y, -80, -0.5f);
+        newPosition.x = Mathf.Clamp(newPosition.z, -1500f, 1500f);
+        transform.position = newPosition;
+    }
 }

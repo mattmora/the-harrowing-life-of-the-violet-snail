@@ -5,7 +5,6 @@ using TMPro;
 
 public class BubbleManager : MonoBehaviour
 {
-    public GameObject makeBubblePrompt;
     public TMP_Text bubbleCountText;
     public TMP_Text bubbleCountBackText;
 

@@ -30,7 +30,10 @@ public class TypeText : MonoBehaviour
     public List<GameObject> hideWith;
     public List<GameObject> showWhenDone;
 
-    public UnityEvent events;
+    [Tooltip("Called after prewait")]
+    public UnityEvent startEvents;
+    [Tooltip("Called after everything, including click if enabled")]
+    public UnityEvent endEvents;
 
     // == PRIVATE == 
     private float typeWait;
@@ -44,7 +47,7 @@ public class TypeText : MonoBehaviour
 
     private bool skip;
     private bool typeDone;
-    private bool allDone;
+    public bool allDone;
 
     private void Awake()
     {
@@ -104,7 +107,7 @@ public class TypeText : MonoBehaviour
     private void End()
     {
         allDone = true;
-        events.Invoke();
+        endEvents.Invoke();
         foreach (var go in showWhenDone) go.SetActive(true);
         if (hideWhenDone)
         {
@@ -140,6 +143,8 @@ public class TypeText : MonoBehaviour
     private IEnumerator TypeRoutine()
     {
         if (preWait > 0f) yield return new WaitForSeconds(preWait);
+
+        startEvents.Invoke();
 
         while (typeIndex < typeString.Length)
         {

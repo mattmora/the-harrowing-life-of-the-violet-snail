@@ -7,6 +7,8 @@ public class LuxWater_SetToGerstnerHeight : MonoBehaviour {
 	public Material WaterMaterial;
 	public Vector3 Damping = new Vector3(0.3f, 1.0f, 0.3f);
 	public float TimeOffset = 0.0f;
+	[Range(0.0f, 1.0f)]
+	public float alpha;
 	public bool UpdateWaterMaterialPerFrame = false;
 
 	[Space(8)]
@@ -94,7 +96,8 @@ public class LuxWater_SetToGerstnerHeight : MonoBehaviour {
 			Offset.y += Offset.y * Damping.y;
 			Offset.z += Offset.z * Damping.z;
 
-			trans.position = pos + Offset;
+			float a = alpha * Time.deltaTime;
+			trans.position = ((pos + Offset) * (1 - a)) + (Offset * a);
 		}
 	}
 }

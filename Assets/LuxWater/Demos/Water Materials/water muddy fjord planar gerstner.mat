@@ -2,16 +2,25 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: water muddy fjord planar gerstner
   m_Shader: {fileID: 4800000, guid: ab6f7521bd72644388f2fc1112e74e7b, type: 3}
-  m_ShaderKeywords: GEOM_TYPE_BRANCH GEOM_TYPE_BRANCH_DETAIL GEOM_TYPE_FROND GEOM_TYPE_LEAF
-    GEOM_TYPE_MESH LUX_WATER_REFLECTIVE _GERSTNERDISPLACEMENT _PIXELSNAP_DEFERRED
-    _PIXELSNAP_POINT _SNAPPING
+  m_ValidKeywords:
+  - GEOM_TYPE_BRANCH_DETAIL
+  - GEOM_TYPE_FROND
+  - GEOM_TYPE_LEAF
+  - GEOM_TYPE_MESH
+  - _GERSTNERDISPLACEMENT
+  - _PIXELSNAP_POINT
+  m_InvalidKeywords:
+  - GEOM_TYPE_BRANCH
+  - LUX_WATER_REFLECTIVE
+  - _PIXELSNAP_DEFERRED
+  - _SNAPPING
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,6 +46,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 17c5930d7db244afb8decf6ebdc6894b, type: 3}
         m_Scale: {x: 25.7, y: 36.4}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AbsorbptionDepth: 0.01
     - _AbsorbptionScale: 1.44
@@ -171,3 +181,4 @@ Material:
     - _TranslucencyColor: {r: 0.14273354, g: 0.29411763, b: 0.29411763, a: 1}
     - _UnderWaterReflCol: {r: 0.8088235, g: 0.7682183, b: 0.5411981, a: 0}
     - _UpperColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
