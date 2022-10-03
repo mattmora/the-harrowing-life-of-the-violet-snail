@@ -5,6 +5,7 @@ using TMPro;
 
 public class BubbleManager : MonoBehaviour
 {
+    public TypeText bubbleCountType;
     public TMP_Text bubbleCountText;
     public TMP_Text bubbleCountBackText;
 
@@ -16,13 +17,20 @@ public class BubbleManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bubbleCountText.text = $"You have {bubbleCount} bubbles.";
-        bubbleCountBackText.text = $"<mark=#000000>{bubbleCountText.text}</mark>";
+        if (bubbleCountType.allDone)
+        {
+            bubbleCountText.text = $"You have {bubbleCount} bubbles.";
+            bubbleCountBackText.text = $"<mark=#000000>{bubbleCountText.text}</mark>";
+        }
+        else
+        {
+            bubbleCountType.typeString = $"You have {bubbleCount} bubbles.";
+        }
 
         if (!preparingBubble && Input.GetKeyDown(KeyCode.B))
         {
             preparingBubble = true;
-            StartCoroutine(BubbleRoutine(Random.Range(4f, 5f)));
+            StartCoroutine(BubbleRoutine(Random.Range(3f, 4f)));
         }
 
         if (bubbleReady && Input.GetKeyUp(KeyCode.B))
@@ -30,6 +38,11 @@ public class BubbleManager : MonoBehaviour
             bubbleCount++;
             bubbleReady = false;
         }
+    }
+
+    public void SetBubbleCount(int count)
+    {
+        bubbleCount = count;
     }
 
     private IEnumerator BubbleRoutine(float time)

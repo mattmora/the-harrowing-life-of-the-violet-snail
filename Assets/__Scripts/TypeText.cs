@@ -40,7 +40,8 @@ public class TypeText : MonoBehaviour
 
     private TMP_Text[] textComponents;
     private string[] originalTexts;
-    private string typeString;
+    [HideInInspector]
+    public string typeString;
 
     private int typeIndex;
     private int[] insertionIndexes;

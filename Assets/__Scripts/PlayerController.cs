@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
 
     public void RaftMode()
     {
-        transform.DORotate(Vector3.zero, 15f).OnComplete(() =>
+        transform.DORotate(Vector3.zero, 15f).SetEase(Ease.InOutBack).OnComplete(() =>
         {
             mode = ControlMode.Raft;
         });
-        verticalLookObject.transform.DOLocalRotateQuaternion(verticalLookInitialRotation, 12f);
+        verticalLookObject.transform.DOLocalRotateQuaternion(verticalLookInitialRotation, 12f).SetEase(Ease.InOutBack);
     }
 
     public void FreeMode()
@@ -100,11 +100,12 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(new Vector3(0f, -hInput * freeLookSpeed * Time.deltaTime, 0f));
         verticalLookObject.transform.Rotate(new Vector3(-vInput * freeLookSpeed * Time.deltaTime, 0f, 0f));
 
-        float move = Input.GetKey(KeyCode.Space) ? 15f : 0f;
-        Vector3 newPosition = transform.position + verticalLookObject.transform.forward * move * Time.deltaTime;
+        float move = Input.GetKey(KeyCode.Space) ? 8f : 0f;
+        Vector3 newPosition = transform.position + (verticalLookObject.transform.forward * move * Time.deltaTime);
+
         newPosition.x = Mathf.Clamp(newPosition.x, -1500f, 1500f);
-        newPosition.y = Mathf.Clamp(newPosition.y, -80, -0.5f);
-        newPosition.x = Mathf.Clamp(newPosition.z, -1500f, 1500f);
+        newPosition.y = Mathf.Clamp(newPosition.y, -80, -0.8f);
+        newPosition.z = Mathf.Clamp(newPosition.z, -1500f, 1500f);
         transform.position = newPosition;
     }
 }
