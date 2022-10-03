@@ -100,11 +100,11 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(new Vector3(0f, -hInput * freeLookSpeed * Time.deltaTime, 0f));
         verticalLookObject.transform.Rotate(new Vector3(-vInput * freeLookSpeed * Time.deltaTime, 0f, 0f));
 
-        float move = Input.GetKey(KeyCode.Space) ? 8f : 0f;
+        float move = Input.GetKey(KeyCode.Space) ? 4f : 0f;
         Vector3 newPosition = transform.position + (verticalLookObject.transform.forward * move * Time.deltaTime);
 
         newPosition.x = Mathf.Clamp(newPosition.x, -1500f, 1500f);
-        newPosition.y = Mathf.Clamp(newPosition.y, -80, -0.8f);
+        newPosition.y = Mathf.Clamp(newPosition.y, -80, -1f);
         newPosition.z = Mathf.Clamp(newPosition.z, -1500f, 1500f);
         transform.position = newPosition;
     }
