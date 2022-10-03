@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         sun.intensity = Mathf.Sin(Time.time * 0.1f) * 0.03f + Mathf.Sin(Time.time * 1.13f) * 0.01f + baseSunIntensity;
 
-        clingPrompt.SetActive(!clingType.allDone || !Input.GetKey(KeyCode.Space));
+        //clingPrompt.SetActive(!clingType.allDone || !Input.GetKey(KeyCode.Space));
     }
 
     // Dumb workaround for easier unityevents workflow (limits duration precision)
