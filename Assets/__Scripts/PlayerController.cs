@@ -103,9 +103,9 @@ public class PlayerController : MonoBehaviour
         float move = Input.GetKey(KeyCode.Space) ? 4f : 0f;
         Vector3 newPosition = transform.position + (verticalLookObject.transform.forward * move * Time.deltaTime);
 
-        newPosition.x = Mathf.Clamp(newPosition.x, -1500f, 1500f);
+        newPosition.x = Mathf.Clamp(newPosition.x, -200f, 200f);
         newPosition.y = Mathf.Clamp(newPosition.y, -80, -1f);
-        newPosition.z = Mathf.Clamp(newPosition.z, -1500f, 1500f);
+        newPosition.z = Mathf.Clamp(newPosition.z, -200f, 200f);
         transform.position = newPosition;
     }
 }
