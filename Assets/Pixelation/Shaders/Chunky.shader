@@ -41,9 +41,9 @@
 				// (5)
 				float2 sprPos = i.uv;
 				sprPos -= blockPos*BlockSize;
-				sprPos.x /= 16;
+				sprPos.x *= 0.0625;
 				sprPos *= BlockCount;
-				sprPos.x += 1.0 / 16.0 * dx;
+				sprPos.x += 0.0625 * dx;
 
 				// (6)
 				float4 tex2 = tex2D(_SprTex, sprPos);

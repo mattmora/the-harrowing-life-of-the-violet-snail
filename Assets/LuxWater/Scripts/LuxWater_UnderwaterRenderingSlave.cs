@@ -16,11 +16,11 @@ namespace LuxWater {
 		private CameraEvent cameraEvent = CameraEvent.BeforeSkybox; // This works for both deferred an forward
 
 		public Camera cam;
-		private Camera mainCam;
+		//private Camera mainCam;
 
 		void OnEnable () {
 			cam = GetComponent<Camera>();
-			mainCam = Camera.main;
+			//mainCam = Camera.main;
 
 			cb_MaskSlave = new CommandBuffer();
 			cb_MaskSlave.name = "Lux Water: Underwater Mask Slave";
@@ -46,14 +46,14 @@ namespace LuxWater {
 
 		void OnPreCull () {
 			if (readyToGo) {
-				waterrendermanager.RenderWaterMask( mainCam, true, cb_MaskSlave );
+				waterrendermanager.RenderWaterMask( cam, true, cb_MaskSlave );
 			}
 		}
 
 		[ImageEffectOpaque]
 		void OnRenderImage(RenderTexture src, RenderTexture dest) {
 			if (readyToGo) {
-				waterrendermanager.RenderUnderWater(src, dest, mainCam, true);
+				waterrendermanager.RenderUnderWater(src, dest, cam, true);
 			}
 		//	We have to blit in any case - otherwise the screen will be black.
 			else {

@@ -10,10 +10,9 @@ using UnityEngine.Experimental.GlobalIllumination;
 public class GameManager : MonoBehaviour
 {
     public Image overlay;
-    public RawImage renderImage;
     public GameObject clingPrompt;
     private TypeText clingType;
-    public Pixelation pixelationEffect;
+    public ChunkyPixelation pixelationEffect;
     public Light sun;
 
     private float baseSunIntensity;
@@ -35,14 +34,14 @@ public class GameManager : MonoBehaviour
     }
 
     // Dumb workaround for easier unityevents workflow (limits duration precision)
-    public void FadeImage(float encodedDurationAlpha)
+    public void FadeChunky(float encodedDurationAlpha)
     {
         float duration = Mathf.Floor(encodedDurationAlpha);
         float alpha = encodedDurationAlpha - duration;
         duration /= 1000f;
         alpha = alpha >= 0.999f ? 1 : alpha;
 
-        renderImage.DOColor(new Color(1, 1, 1, alpha), duration);
+        DOTween.To(() => pixelationEffect.Mix, x => pixelationEffect.Mix = x, alpha, duration);
     }
 
     public void FadeOverlay(float encodedDurationAlpha)
