@@ -4,15 +4,14 @@ using UnityEngine;
 using DG.Tweening;
 using Assets.Pixelation.Scripts;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public class GameManager : MonoBehaviour
 {
     public Image overlay;
     public GameObject clingPrompt;
     private TypeText clingType;
-    public ChunkyPixelation pixelationEffect;
+    public Chunky chunkyEffect;
+    public Pixelation pixelationEffect;
     public Light sun;
 
     private float baseSunIntensity;
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
         duration /= 1000f;
         alpha = alpha >= 0.999f ? 1 : alpha;
 
-        DOTween.To(() => pixelationEffect.Mix, x => pixelationEffect.Mix = x, alpha, duration);
+        DOTween.To(() => chunkyEffect.Mix, x => chunkyEffect.Mix = x, alpha, duration);
     }
 
     public void FadeOverlay(float encodedDurationAlpha)

@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referenceText: {fileID: 7360708320650769288}
-  typeSpeed: 25
+  typeSpeed: 30
   punctuationWait: 0.2
   punctuation: "!,.?\u2014:;"
   playOnAwake: 1
@@ -209,9 +209,14 @@ MonoBehaviour:
   TMPTagSupport: 1
   hideWith: []
   showWhenDone: []
-  events:
+  startEvents:
     m_PersistentCalls:
       m_Calls: []
+  endEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  typeString: 
+  allDone: 0
 --- !u!114 &7360708321829046583
 MonoBehaviour:
   m_ObjectHideFlags: 0

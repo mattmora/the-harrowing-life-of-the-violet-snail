@@ -11,6 +11,8 @@ namespace Assets.Pixelation.Scripts
 
         public Color Color = Color.white;
 
+        public float Mix;
+
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
             float w = Camera.main.pixelWidth;
@@ -22,6 +24,7 @@ namespace Assets.Pixelation.Scripts
             material.SetVector("BlockSize", size);
             material.SetColor("_Color", Color);
             material.SetTexture("_SprTex", SprTex);
+            material.SetFloat("Mix", Mix);
             Graphics.Blit(source, destination, material);
         }
     }

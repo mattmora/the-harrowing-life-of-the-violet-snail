@@ -9736,7 +9736,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3242235187456633798}
   - component: {fileID: 3242235187456633797}
-  - component: {fileID: 7593068272892313526}
   - component: {fileID: 3242235187456633803}
   - component: {fileID: 3242235187456633796}
   - component: {fileID: 3242235187456633802}
@@ -9744,6 +9743,7 @@ GameObject:
   - component: {fileID: 3242235187456633793}
   - component: {fileID: 3242235187456633792}
   - component: {fileID: 3242235187456633800}
+  - component: {fileID: 3242235187313694872}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9794,12 +9794,12 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967293
   m_RenderingPath: 3
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: aa0c1cf7b1e19b643b6a3c9baa8508ca, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -9809,23 +9809,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &7593068272892313526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3242235187456633804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab954b1fadf404106b5082f3a57d1997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 18fb542353906453088bb01512de41f7, type: 3}
-  BlockCount: 32
-  SprTex: {fileID: 2800000, guid: e24d36d8ff948514689bd64ae291d616, type: 3}
-  Color: {r: 1, g: 1, b: 1, a: 1}
-  Mix: 0.5
 --- !u!81 &3242235187456633803
 AudioListener:
   m_ObjectHideFlags: 0
@@ -9930,6 +9913,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   active: 1
+--- !u!114 &3242235187313694872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242235187456633804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47762ded9761414ebb71d48b51adeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabDepthTexture: 1
+  ShowShaderWarning: 1
 --- !u!1 &4905188864124492377
 GameObject:
   m_ObjectHideFlags: 0
