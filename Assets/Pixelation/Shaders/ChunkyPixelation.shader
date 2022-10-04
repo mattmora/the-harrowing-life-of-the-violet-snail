@@ -30,11 +30,7 @@
 			{
 				float2 blockPos = floor(i.uv * BlockCount);
 				float2 blockCenter = blockPos * BlockSize + BlockSize * 0.5;
-
-				float4 pixTex = tex2D(_MainTex, blockCenter);
-
-				// CHUNKY
-				// (1)
+				
 				float2 chunkPos = floor(i.uv * ChunkCount);
 				float2 chunkCenter = chunkPos * ChunkSize + ChunkSize * 0.5;
 
@@ -44,11 +40,13 @@
 				float2 chunkBlockPos = floor(blockCenter * ChunkCount);
 				float2 chunkBlockCenter = chunkPos * ChunkSize + ChunkSize * 0.5;
 
+				// CHUNKY
+				// (1)
 				// (2)
 				float4 del = float4(1, 1, 1, 1) - _Color;
 
 				// (3)
-				float4 tex = tex2D(_MainTex, chunkBlockCenter) - del;
+				float4 tex = tex2D(_MainTex, chunkCenter) - del;
 
 				float grayscale = dot(tex.rgb, float3(0.3, 0.59, 0.11));
 				grayscale = clamp(grayscale, 0.0, 1.0);
@@ -65,6 +63,9 @@
 
 				// (6)
 				float4 chunkTex = tex2D(_SprTex, sprPos);
+
+				// PIXELATION 
+				float4 pixTex = tex2D(_MainTex, blockCenter);
 			
 				return lerp(pixTex, chunkTex, Mix);
 			}
