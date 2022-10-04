@@ -41,11 +41,14 @@
 				float2 blockChunkPos = floor(chunkCenter * BlockCount);
 				float2 blockChunkCenter = blockPos * BlockSize + BlockSize * 0.5;
 
+				float2 chunkBlockPos = floor(blockCenter * ChunkCount);
+				float2 chunkBlockCenter = chunkPos * ChunkSize + ChunkSize * 0.5;
+
 				// (2)
 				float4 del = float4(1, 1, 1, 1) - _Color;
 
 				// (3)
-				float4 tex = tex2D(_MainTex, blockChunkCenter) - del;
+				float4 tex = tex2D(_MainTex, chunkBlockCenter) - del;
 
 				float grayscale = dot(tex.rgb, float3(0.3, 0.59, 0.11));
 				grayscale = clamp(grayscale, 0.0, 1.0);
