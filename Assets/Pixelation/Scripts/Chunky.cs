@@ -13,10 +13,18 @@ namespace Assets.Pixelation.Scripts
 
         public float Mix;
 
+        private Camera mainCamera;
+
+        private void Awake()
+        {
+            mainCamera = Camera.main;
+        }
+
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            float w = Camera.main.pixelWidth;
-            float h = Camera.main.pixelHeight;
+            float w = mainCamera.pixelWidth;
+            float h = mainCamera.pixelHeight;
+
             Vector2 count = new Vector2(w/SprTex.height, h/SprTex.height);
             Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
             //

@@ -102,6 +102,7 @@ public class TypeText : MonoBehaviour
 
     public void Skip()
     {
+        if (typeIndex == 0) return;
         skip = true; 
     }
 

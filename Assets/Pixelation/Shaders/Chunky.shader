@@ -39,10 +39,11 @@
 				sprPos -= blockPos*BlockSize;
 				sprPos.x /= 16;
 				sprPos *= BlockCount;
-				sprPos.x += 0.0625 * dx;
+				sprPos.x += 1.0 / 16.0 * dx;
 
 				float4 tex = tex2D(_MainTex, i.uv);
 				float4 tex2 = tex2D(_SprTex, sprPos);
+
 
 				float4 mixTex = lerp(tex, tex2, Mix);
 				return mixTex;

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void FadeOverlay(float encodedDurationAlpha)
     {
-        Debug.Log("Fade overlay");
+        //Debug.Log("Fade overlay");
 
         float duration = Mathf.Floor(encodedDurationAlpha);
         float alpha = encodedDurationAlpha - duration;

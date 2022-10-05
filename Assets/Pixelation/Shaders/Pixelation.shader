@@ -6,6 +6,7 @@
 	}
 	SubShader
 	{
+		Cull Off
 		Pass
 		{
 			CGPROGRAM
