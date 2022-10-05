@@ -7,6 +7,8 @@ namespace Assets.Pixelation.Scripts
     [AddComponentMenu("Image Effects/Color Adjustments/Chunky")]
     public class Chunky : ImageEffectBase
     {
+        public float resolution;
+
         public Texture2D SprTex;
 
         public Color Color = Color.white;
@@ -22,8 +24,8 @@ namespace Assets.Pixelation.Scripts
 
         private void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-            float w = mainCamera.pixelWidth;
-            float h = mainCamera.pixelHeight;
+            float w = resolution;
+            float h = resolution * 9f / 16f;
 
             Vector2 count = new Vector2(w/SprTex.height, h/SprTex.height);
             Vector2 size = new Vector2(1.0f/count.x, 1.0f/count.y);
