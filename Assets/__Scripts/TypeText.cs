@@ -100,6 +100,11 @@ public class TypeText : MonoBehaviour
         StartCoroutine(TypeRoutine());
     }
 
+    public void Reverse()
+    {
+        StartCoroutine(UntypeRoutine());
+    }
+
     public void Skip()
     {
         if (typeIndex == 0) return;
@@ -185,6 +190,36 @@ public class TypeText : MonoBehaviour
                 Untype(clickPrompt.Length);
                 yield return new WaitForSeconds(0.5f);
             }
+        }
+    }
+
+    private IEnumerator UntypeRoutine()
+    {
+        typeIndex--;
+        while (typeIndex >= 0)
+        {
+            string lastType = referenceText.text.Substring(typeIndex, 1);
+
+            if (lastType == ">")
+            {
+                int tagStartIndex = referenceText.text.LastIndexOf("<");
+                Debug.Log(typeIndex);
+                Debug.Log(tagStartIndex);
+                // +2 because we want to skip the tag entirely and type the next character
+                if (tagStartIndex > 0)
+                {
+                    int l = typeIndex - tagStartIndex + 2;
+                    if (typeIndex - l < 0) l--;
+                    
+                    lastType = referenceText.text.Substring(typeIndex - l, l);
+                }
+            }
+
+            Untype(lastType.Length);
+
+            float wait = typeWait;
+
+            yield return new WaitForSeconds(wait);
         }
     }
 }
